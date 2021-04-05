@@ -1,5 +1,11 @@
 # Coinbase Pro Websocket feed and Order book handling
 
+### Requirements
+Java 11 or higher
+
+### Execution
+./gradlew bootRun -Pargs=BTC-EUR
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
