@@ -1,0 +1,5 @@
+
+coinbasepro:
+  exchange:
+    wsUrl: wss://ws-feed.pro.coinbase.com
+    orderBookLevels: 10
