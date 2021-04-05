@@ -4,20 +4,19 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Value
 @Builder
 
-public class Order implements Comparable {
+public class OrderLevel implements Comparable {
 
-    private BigDecimal size;
+    private BigDecimal marketSize;
     private BigDecimal price;
 
     @Override
     public int compareTo(Object o) {
-        if (o instanceof Order) {
-            Order other = (Order) o;
+        if (o instanceof OrderLevel) {
+            OrderLevel other = (OrderLevel) o;
             return this.getPrice().compareTo(other.getPrice());
         }
         return -1;

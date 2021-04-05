@@ -9,8 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.websocket.DeploymentException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.Optional;
 
 @SpringBootApplication
 public class Application {
