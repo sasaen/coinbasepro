@@ -39,19 +39,17 @@ public class OrderBookService {
         log.info("Received order book snapshot  {}", orderBookResponse.getProductId());
 
         OrderBook orderBook = new OrderBook();
-        orderBookMap.put(orderBookResponse.getProductId(), orderBook);
+        populateOrderLevelSet(orderBookResponse.getBids(), orderBook.getBids());
+        populateOrderLevelSet(orderBookResponse.getAsks(), orderBook.getAsks());
 
-        Set<OrderLevel> bids = orderBook.getBids();
-        Arrays.stream(orderBookResponse.getBids())
+        orderBookMap.put(orderBookResponse.getProductId(), orderBook);
+    }
+
+    private void populateOrderLevelSet(String[][] snapshotArray, Set<OrderLevel> bids) {
+        Arrays.stream(snapshotArray)
                 .limit(this.exchangeConfig.getOrderBookLevels())
                 .map(strings -> this.buildOrder(strings[0], strings[1]))
                 .forEach(bid -> bids.add(bid));
-
-        Set<OrderLevel> asks = orderBook.getAsks();
-        Arrays.stream(orderBookResponse.getAsks())
-                .limit(this.exchangeConfig.getOrderBookLevels())
-                .map(strings -> this.buildOrder(strings[0], strings[1]))
-                .forEach(ask -> asks.add(ask));
     }
 
     private void handleL2Update(L2UpdateMessage l2UpdateMessage, OrderBook orderBook) {

@@ -11,11 +11,14 @@ public class PrintSupport {
 
     public static void printOrderBook(OrderBook orderBook, int levels) {
         log.info("Updated orderBook");
+        log.info("");
 
         log.info("asks: {}", orderBook.getAsks().size());
         printOrderLevelsDescendingOrder(orderBook.getAsks(), levels);
+        log.info("");
         log.info("bids: {}", orderBook.getBids().size());
         printOrderLevels(orderBook.getBids(), levels);
+        log.info("");
     }
 
     private static void printOrderLevels(NavigableSet<OrderLevel> orderLevelSet, int levels) {
